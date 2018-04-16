@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
-    private Validator(){
 
+    private Validator(){
     }
 
     public static boolean wordCheck(String line){

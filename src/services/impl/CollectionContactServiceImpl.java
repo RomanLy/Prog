@@ -16,7 +16,7 @@ public class CollectionContactServiceImpl implements ContactService {
 
     @Override
     public void deleteContact(String name) {
-
+        this.contactMap.remove(name);
     }
 
     @Override

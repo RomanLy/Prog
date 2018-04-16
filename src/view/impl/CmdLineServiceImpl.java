@@ -47,10 +47,10 @@ public class CmdLineServiceImpl implements UserInterfaceService{
         String phoneNumber = readPhoneNumber("phoneNumber");
         this.ccs.createContact(name, surname, age, phoneNumber);
     }
-    private void deleteContact() {
-
-
-
+    private void deleteContact() throws IOException {
+        System.out.println("Enter name: ");
+        String name = br.readLine();
+        ccs.deleteContact(name);
     }
     private void editContact() {
 
