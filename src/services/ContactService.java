@@ -2,7 +2,7 @@ package services;
 
 public interface ContactService {
 
-    void createContact (String name, int age);
+    void createContact (String name, String surname, int age, String phoneNumber);
     void deleteContact (String name);
     void editContact ();
     void showContacts ();

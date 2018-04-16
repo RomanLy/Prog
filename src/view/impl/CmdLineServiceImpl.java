@@ -42,8 +42,10 @@ public class CmdLineServiceImpl implements UserInterfaceService{
 
     private void createContact() throws IOException {
         String name = readString("name");
+        String surname = readString("surname");
         int age = readInt("age");
-        this.ccs.createContact(name, age);
+        String phoneNumber = readPhoneNumber("phoneNumber");
+        this.ccs.createContact(name, surname, age, phoneNumber);
     }
     private void deleteContact() {
 
@@ -84,6 +86,19 @@ public class CmdLineServiceImpl implements UserInterfaceService{
             readString(name);
         }
         return word;
+    }
+    private String readPhoneNumber(String phoneNumber) throws IOException {
+        String number = null;
+        System.out.println("Enter " + phoneNumber + ": ");
+        String line = br.readLine();
+        if (Validator.phoneNumberCheck(line)){
+            number = line;
+        }
+        else {
+            System.out.println("Incorrect "+ phoneNumber + "! Please try again");
+            readInt(phoneNumber);
+        }
+        return number;
     }
 
 

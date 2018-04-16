@@ -3,11 +3,15 @@ package model;
 public class Contact {
 
     private String name;
+    private String surname;
     private int age;
+    private String phoneNumber;
 
-    public Contact(String name, int age) {
+    public Contact(String name, String surname, int age, String phoneNumber) {
         this.name = name;
+        this.surname = surname;
         this.age = age;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getName() {
@@ -28,6 +32,6 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Name: " + name + "; Age: " + age + ";";
+        return "Name: " + name + "; Surname: " + surname + "; Age: " + age +"; PhoneNumber: " + phoneNumber +  ";";
     }
 }
