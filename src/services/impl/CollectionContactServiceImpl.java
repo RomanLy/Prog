@@ -1,5 +1,4 @@
 package services.impl;
-
 import model.Contact;
 import services.ContactService;
 import java.util.HashMap;

@@ -1,9 +1,7 @@
 package view.impl;
-
 import util.Validator;
 import services.impl.CollectionContactServiceImpl;
 import view.UserInterfaceService;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -100,6 +98,5 @@ public class CmdLineServiceImpl implements UserInterfaceService{
         }
         return number;
     }
-
 
 }

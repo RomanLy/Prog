@@ -1,7 +1,6 @@
 import services.impl.CollectionContactServiceImpl;
 import view.UserInterfaceService;
 import view.impl.CmdLineServiceImpl;
-
 import java.io.IOException;
 
 public class Main {
