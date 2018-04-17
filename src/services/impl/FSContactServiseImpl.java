@@ -1,6 +1,7 @@
 package services.impl;
 
 import dao.ContactDao;
+import model.Contact;
 import services.ContactService;
 
 public class FSContactServiseImpl implements ContactService{
@@ -14,7 +15,7 @@ public class FSContactServiseImpl implements ContactService{
 
     @Override
     public void createContact(String name, String surname, int age, String phoneNumber) {
-
+        CONTACT_DAO.saveContact(new Contact(name, surname, age, phoneNumber));
     }
 
     @Override
@@ -29,6 +30,6 @@ public class FSContactServiseImpl implements ContactService{
 
     @Override
     public void showContacts() {
-
+        CONTACT_DAO.showAll();
     }
 }

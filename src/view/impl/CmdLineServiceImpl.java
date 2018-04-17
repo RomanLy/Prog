@@ -1,4 +1,5 @@
 package view.impl;
+import services.ContactService;
 import util.Validator;
 import services.impl.CollectionContactServiceImpl;
 import view.UserInterfaceService;
@@ -8,11 +9,12 @@ import java.io.InputStreamReader;
 
 public class CmdLineServiceImpl implements UserInterfaceService{
 
-    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    private CollectionContactServiceImpl ccs;
+    private BufferedReader br;
+    private ContactService contactService;
 
-    public CmdLineServiceImpl(CollectionContactServiceImpl collectionContactService){
-        this.ccs = collectionContactService;
+    public CmdLineServiceImpl(ContactService contactService){
+        this.contactService = contactService;
+        this.br = new BufferedReader(new InputStreamReader(System.in));
     }
 
     @Override
@@ -43,12 +45,12 @@ public class CmdLineServiceImpl implements UserInterfaceService{
         String surname = readString("surname");
         int age = readInt("age");
         String phoneNumber = readPhoneNumber("phoneNumber");
-        this.ccs.createContact(name, surname, age, phoneNumber);
+        this.contactService.createContact(name, surname, age, phoneNumber);
     }
     private void deleteContact() throws IOException {
         System.out.println("Enter name: ");
         String name = br.readLine();
-        ccs.deleteContact(name);
+        contactService.deleteContact(name);
     }
     private void editContact() {
 
@@ -56,7 +58,7 @@ public class CmdLineServiceImpl implements UserInterfaceService{
 
     }
     private void showContact() {
-        ccs.showContacts();
+        contactService.showContacts();
     }
 
     private int readInt(String name) throws IOException {
