@@ -20,6 +20,7 @@ public class FSContactServiseImpl implements ContactService{
 
     @Override
     public void deleteContact(String name) {
+        CONTACT_DAO.removeContact(name);
 
     }
 

@@ -4,12 +4,12 @@ import dao.ContactDao;
 import model.Contact;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class FSContactDaoImpl implements ContactDao {
+    public FSContactDaoImpl(){}
 
     private static final File FILE = new File("data.txt");
-    public FSContactDaoImpl(){
-    }
 
     @Override
     public void saveContact(Contact contact) {
@@ -17,6 +17,7 @@ public class FSContactDaoImpl implements ContactDao {
         try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(FILE, true)))) {
                 writer.println(contact);
                 writer.flush();
+                writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -24,7 +25,7 @@ public class FSContactDaoImpl implements ContactDao {
     }
 
     @Override
-    public void removeContact(Contact contact) {
+    public void removeContact(String name) {
 
     }
 
