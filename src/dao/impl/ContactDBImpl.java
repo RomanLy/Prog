@@ -3,10 +3,7 @@ package dao.impl;
 import dao.ContactDao;
 import model.Contact;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ContactDBImpl implements ContactDao {
 
@@ -15,15 +12,18 @@ public class ContactDBImpl implements ContactDao {
     public ContactDBImpl() {
         try {
             Class.forName("org.h2.Driver");
-            try(Connection connection = DriverManager.getConnection(URL, "Test", ""))
-            {Statement statement = connection.createStatement();
-                statement.execute("CREATE TABLE TEST(ID INT AUTO_INCREMENT PRIMARY KEY, NAME VARCHAR(255));");
-            statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try (Connection connection = DriverManager.getConnection(URL, "Test", "");
+        Statement statement = connection.createStatement()){
+            statement.executeUpdate("CREATE TABLE CLIENTS (ID INT not null  AUTO_INCREMENT, " +
+                    "NAME VARCHAR() not null,  PRIMARY KEY(id);");
+
+//            statement.close();
+
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
