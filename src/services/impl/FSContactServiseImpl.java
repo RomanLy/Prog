@@ -6,21 +6,21 @@ import services.ContactService;
 
 public class FSContactServiseImpl implements ContactService{
 
-    private final ContactDao CONTACT_DAO;
+    private final ContactDao contactDao;
 
     public FSContactServiseImpl(ContactDao contactDao) {
-        this.CONTACT_DAO = contactDao;
+        this.contactDao = contactDao;
     }
 
 
     @Override
     public void createContact(String name, String surname, int age, String phoneNumber) {
-        CONTACT_DAO.saveContact(new Contact(name, surname, age, phoneNumber));
+        contactDao.saveContact(new Contact(name, surname, age, phoneNumber));
     }
 
     @Override
     public void deleteContact(String name) {
-        CONTACT_DAO.removeContact(name);
+        contactDao.removeContact(name);
 
     }
 
@@ -31,6 +31,6 @@ public class FSContactServiseImpl implements ContactService{
 
     @Override
     public void showContacts() {
-        CONTACT_DAO.showAll();
+        contactDao.showAll();
     }
 }

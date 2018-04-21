@@ -8,35 +8,19 @@ import java.sql.*;
 public class ContactDBImpl implements ContactDao {
 
     private static final String URL = "jdbc:h2:tcp://localhost/~/Client";
-    private String username = "TEST";
-    private String password = "";
+    private static final String USERNAME = "TEST";
+    private static final String PASSWORD = "";
+    private Statement statement;
 
     public ContactDBImpl() {
         try {
             Class.forName("org.h2.Driver");
         } catch (ClassNotFoundException e) {
-            System.out.println("Connection");
+            e.printStackTrace();
         }
-
-
-//        try {
-//            Connection connection = DriverManager.getConnection(URL, username, password);
-//            Statement statement = connection.createStatement();
-//            statement.executeUpdate("Drop table if exists Clients");
-//            statement.executeUpdate("create table Clients ( id int not null auto_increment, name VARCHAR(30) not null, PRIMARY KEY (id));");
-//            statement.executeUpdate("insert into Clients set name = 'David'");
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
-
-    }
-
-    @Override
-    public void saveContact(Contact contact) {
         try {
-            Connection connection = DriverManager.getConnection(URL, username, password);
-            Statement statement = connection.createStatement();
+            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            statement = connection.createStatement();
             statement.executeUpdate("Drop table if exists Clients");
             statement.executeUpdate("create table Clients ( id int not null auto_increment, " +
                     "name VARCHAR(30), " +
@@ -44,10 +28,14 @@ public class ContactDBImpl implements ContactDao {
                     "age int, " +
                     "phoneNumber VARCHAR(13), " +
                     "PRIMARY KEY (id));");
-//            statement.executeUpdate("insert into Clients set name = '"+ contact.getName() +"'");
-//            statement.executeUpdate("insert into Clients set surname = '"+ contact.getSurname() +"'");
-//            statement.executeUpdate("insert into Clients set age = '"+ contact.getAge() +"'");
-//            statement.executeUpdate("insert into Clients set phoneNumber = '"+ contact.getPhoneNumber() +"'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void saveContact(Contact contact) {
+        try {
             statement.executeUpdate("insert into clients (name, surname, age, phoneNumber)" +
                     "values ('" + contact.getName() + "'," +
                     "'" + contact.getSurname() + "'," +
@@ -57,6 +45,11 @@ public class ContactDBImpl implements ContactDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void editContact() {
+
     }
 
     @Override
