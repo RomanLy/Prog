@@ -54,7 +54,11 @@ public class ContactDBImpl implements ContactDao {
 
     @Override
     public void removeContact(String name) {
-
+        try {
+            statement.executeUpdate("delete from clients where name = '" + name + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
