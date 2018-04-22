@@ -21,8 +21,8 @@ public class ContactDBImpl implements ContactDao {
         try {
             Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             statement = connection.createStatement();
-            statement.executeUpdate("Drop table if exists Clients");
-            statement.executeUpdate("create table Clients ( id int not null auto_increment, " +
+//            statement.executeUpdate("Drop table if exists Clients");
+            statement.executeUpdate("create table if not exists Clients ( id int not null auto_increment, " +
                     "name VARCHAR(30), " +
                     "surname VARCHAR(64), " +
                     "age int, " +
@@ -63,6 +63,10 @@ public class ContactDBImpl implements ContactDao {
 
     @Override
     public void showAll() {
-
+//        try {
+//            statement.executeQuery("select * from clients");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 }
