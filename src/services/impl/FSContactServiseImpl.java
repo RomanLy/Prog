@@ -25,7 +25,7 @@ public class FSContactServiseImpl implements ContactService{
     }
 
     @Override
-    public void editContact() {
+    public void editContact(String name) {
 
     }
 

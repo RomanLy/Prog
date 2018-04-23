@@ -19,7 +19,7 @@ public class CollectionContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void editContact() {
+    public void editContact(String name) {
 
     }
 

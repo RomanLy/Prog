@@ -3,6 +3,7 @@ import dao.impl.ContactDBImpl;
 import dao.impl.FSContactDaoImpl;
 import services.ContactService;
 import services.impl.CollectionContactServiceImpl;
+import services.impl.DBContactServiseImpl;
 import services.impl.FSContactServiseImpl;
 import view.UserInterfaceService;
 import view.impl.CmdLineServiceImpl;
@@ -14,7 +15,7 @@ public class Main {
 
 //        UserInterfaceService userInterfaceService = new CmdLineServiceImpl(new FSContactServiseImpl(new FSContactDaoImpl()));
 
-        UserInterfaceService userInterfaceService = new CmdLineServiceImpl(new FSContactServiseImpl(new ContactDBImpl()));
+        UserInterfaceService userInterfaceService = new CmdLineServiceImpl(new DBContactServiseImpl(new ContactDBImpl()));
         userInterfaceService.runMenu();
 
     }

@@ -25,9 +25,10 @@ public class FSContactDaoImpl implements ContactDao {
     }
 
     @Override
-    public void editContact() {
+    public void editContact(String name) {
 
     }
+
 
     @Override
     public void removeContact(String name) {

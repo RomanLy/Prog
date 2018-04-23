@@ -48,12 +48,12 @@ public class CmdLineServiceImpl implements UserInterfaceService{
         this.contactService.createContact(name, surname, age, phoneNumber);
     }
     private void deleteContact() throws IOException {
-        System.out.println("Enter name: ");
-        String name = br.readLine();
+        String name = readString("name");
         contactService.deleteContact(name);
     }
-    private void editContact() {
-
+    private void editContact() throws IOException {
+        String name = readString("name");
+        contactService.editContact(name);
 
 
     }

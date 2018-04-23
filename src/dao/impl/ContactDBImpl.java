@@ -11,6 +11,7 @@ public class ContactDBImpl implements ContactDao {
     private static final String USERNAME = "TEST";
     private static final String PASSWORD = "";
     private Statement statement;
+    private Connection connection;
 
     public ContactDBImpl() {
         try {
@@ -19,7 +20,7 @@ public class ContactDBImpl implements ContactDao {
             e.printStackTrace();
         }
         try {
-            Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             statement = connection.createStatement();
 //            statement.executeUpdate("Drop table if exists Clients");
             statement.executeUpdate("create table if not exists Clients ( id int not null auto_increment, " +
@@ -48,9 +49,17 @@ public class ContactDBImpl implements ContactDao {
     }
 
     @Override
-    public void editContact() {
+    public void editContact(String name) {
+
+//        try {
+//            statement.executeUpdate("update clients set surname = 'Lion' where name = 'Roman'");
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
 
     }
+
 
     @Override
     public void removeContact(String name) {
@@ -63,10 +72,29 @@ public class ContactDBImpl implements ContactDao {
 
     @Override
     public void showAll() {
+        try {
+         ResultSet resultSet = statement.executeQuery("select * from clients");
+         while (resultSet.next()){
+
+             String name = resultSet.getString(2);
+             String surname = resultSet.getString(3);
+             int age = resultSet.getInt(4);
+             String phoneNumber = resultSet.getString(5);
+             Contact contact = new Contact(name, surname, age, phoneNumber);
+             System.out.println(contact);
+         }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 //        try {
-//            statement.executeQuery("select * from clients");
+//            connection.close();
+//            if (connection.isClosed()) System.out.println("Connection is closed");
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
+
+
     }
 }
