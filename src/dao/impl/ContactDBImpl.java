@@ -12,6 +12,11 @@ public class ContactDBImpl implements ContactDao {
     private static final String PASSWORD = "";
     private Statement statement;
     private Connection connection;
+    private String field = "surname";
+
+//    public void setField(String field) {
+//        this.field = field;
+//    }
 
     public ContactDBImpl() {
         try {
@@ -51,13 +56,11 @@ public class ContactDBImpl implements ContactDao {
     @Override
     public void editContact(String name) {
 
-//        try {
-//            statement.executeUpdate("update clients set surname = 'Lion' where name = 'Roman'");
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
-
+        try {
+            statement.executeUpdate("update clients set " + field + " = '" + "surname" + "' where name = '" + name + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -72,10 +75,9 @@ public class ContactDBImpl implements ContactDao {
 
     @Override
     public void showAll() {
-        try {
+         try {
          ResultSet resultSet = statement.executeQuery("select * from clients");
          while (resultSet.next()){
-
              String name = resultSet.getString(2);
              String surname = resultSet.getString(3);
              int age = resultSet.getInt(4);
@@ -83,10 +85,9 @@ public class ContactDBImpl implements ContactDao {
              Contact contact = new Contact(name, surname, age, phoneNumber);
              System.out.println(contact);
          }
-
-        } catch (SQLException e) {
+         } catch (SQLException e) {
             e.printStackTrace();
-        }
+         }
 
 //        try {
 //            connection.close();

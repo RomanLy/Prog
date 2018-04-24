@@ -1,7 +1,7 @@
 package view.impl;
 import services.ContactService;
-import util.Validator;
-import services.impl.CollectionContactServiceImpl;
+import util.Validation;
+import util.impl.Validator;
 import view.UserInterfaceService;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +11,7 @@ public class CmdLineServiceImpl implements UserInterfaceService{
 
     private BufferedReader br;
     private ContactService contactService;
+    private Validation validation = new Validator();
 
     public CmdLineServiceImpl(ContactService contactService){
         this.contactService = contactService;
@@ -55,7 +56,6 @@ public class CmdLineServiceImpl implements UserInterfaceService{
         String name = readString("name");
         contactService.editContact(name);
 
-
     }
     private void showContact() {
         contactService.showContacts();
@@ -65,7 +65,7 @@ public class CmdLineServiceImpl implements UserInterfaceService{
         int number = 0;
         System.out.println("Enter " + name + ": ");
         String line = br.readLine();
-        if (Validator.numberCheck(line)){
+        if (validation.numberCheck(line)){
             number = new Integer(line);
         }
         else {
@@ -78,7 +78,7 @@ public class CmdLineServiceImpl implements UserInterfaceService{
         System.out.println("Enter " + name + ": ");
         String word = null;
         String line = br.readLine();
-        if (Validator.wordCheck(line)){
+        if (validation.wordCheck(line)){
             word = line;
         }
         else {
@@ -91,7 +91,7 @@ public class CmdLineServiceImpl implements UserInterfaceService{
         String number = null;
         System.out.println("Enter " + phoneNumber + ": ");
         String line = br.readLine();
-        if (Validator.phoneNumberCheck(line)){
+        if (validation.phoneNumberCheck(line)){
             number = line;
         }
         else {
