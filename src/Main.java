@@ -10,8 +10,9 @@ import view.impl.CmdLineServiceImpl;
 
 import java.io.IOException;
 
-//public class Main extends Application{
     public class Main{
+//public class Main extends Application{
+//
 //    @Override
 //    public void start(Stage primaryStage) throws Exception {
 //        Parent root = FXMLLoader.load(getClass().getResource("scenes/MainWindow.fxml"));
@@ -22,7 +23,6 @@ import java.io.IOException;
 
     public static void main(String[] args) throws IOException {
 //        UserInterfaceService userInterfaceService = new CmdLineServiceImpl(new CollectionContactServiceImpl());
-
 //        UserInterfaceService userInterfaceService = new CmdLineServiceImpl(new FSContactServiseImpl(new FSContactDaoImpl()));
 
         UserInterfaceService userInterfaceService = new CmdLineServiceImpl(new DBContactServiseImpl(new ContactDBImpl()));
